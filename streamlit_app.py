@@ -77,7 +77,12 @@ st.markdown("""
 
 # -------------------- READ CSV FILES --------------------
 
-users = pd.read_csv("data/Users.csv", sep="\t")
+import os
+
+users = pd.read_csv(
+    os.path.join(os.path.dirname(__file__), "data", "Users.csv"),
+    sep="\t"
+)
 courses = pd.read_csv("data/Courses.csv", sep="\t")
 transactions = pd.read_csv("data/Transaction.csv", sep="\t")
 
