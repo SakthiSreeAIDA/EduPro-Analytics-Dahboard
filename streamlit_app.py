@@ -79,20 +79,22 @@ st.markdown("""
 
 import os
 
+base_path = os.path.dirname(os.path.abspath(__file__))
+
 users = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "data", "Users.csv"),
+    os.path.join(base_path, "Users.csv"),
     sep="\t"
 )
-courses = pd.read_csv("data/Courses.csv", sep="\t")
-transactions = pd.read_csv("data/Transaction.csv", sep="\t")
 
-# Remove duplicates
+courses = pd.read_csv(
+    os.path.join(base_path, "Courses.csv"),
+    sep="\t"
+)
 
-users = users.drop_duplicates()
-courses = courses.drop_duplicates()
-transactions = transactions.drop_duplicates()
-
-
+transactions = pd.read_csv(
+    os.path.join(base_path, "Transaction.csv"),
+    sep="\t"
+)
 # -------------------- MERGE DATASETS --------------------
 
 data = transactions.merge(users, on="UserID")
